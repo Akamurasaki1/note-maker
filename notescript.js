@@ -8,7 +8,21 @@ document.querySelectorAll('.lane').forEach(lane => {
   });
 });
 
+function downloadJson(data, filename) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename.endsWith('.json') ? filename : filename + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 document.getElementById('exportBtn').addEventListener('click', () => {
-  const output = document.getElementById('output');
-  output.textContent = JSON.stringify(notes, null, 2);
+  const filename = document.getElementById('filenameInput').value.trim();
+  if (!filename) {
+    alert('ファイル名を入力してください');
+    return;
+  }
+  downloadJson(notes, filename);
 });
