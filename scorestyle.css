@@ -18,9 +18,15 @@ body {
 }
 #exportBtn {
   position: fixed;
-  top: 10px;
+  top: 20px;
   left: 10px;
   z-index: 100;
+}
+#filenameInput{
+  position: fixed;
+  top:10px;
+  left:10px;
+  z-index:100;
 }
 #output {
   position: fixed;
